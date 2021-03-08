@@ -1,0 +1,36 @@
+.feedbackControl {
+  margin: 20px;
+  text-align: center;
+}
+.borderButton {
+  text-decoration: none;
+  display: inline-block;
+  color: white;
+  padding: 20px 30px;
+  margin: 10px 20px;
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background-size: 200% auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  transition: 0.5s;
+  cursor: pointer;
+}
+.borderButton:hover {
+  background-position: right center;
+}
+
+.borderButton:focus {
+  outline: solid 1px grey;
+  background-position: right center;
+}
+.green {
+  background-image: linear-gradient(to right, grey 0%, green 51%, grey 100%);
+}
+.yellow {
+  background-image: linear-gradient(to right, grey 0%, yellow 51%, grey 100%);
+}
+.red {
+  background-image: linear-gradient(to right, grey 0%, red 51%, grey 100%);
+}
