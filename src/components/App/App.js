@@ -35,17 +35,16 @@ class App extends Component {
           countTotalFeedback={this.countTotalFeedback}
           countPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage}
         />
-        {this.countTotalFeedback() > 0 ? (
-          <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={this.countTotalFeedback()}
-            positivePercentage={this.countPositiveFeedbackPercentage(
-              this.countTotalFeedback,
-            )}
-          />
-        ) : null}
+        <Statistics
+          good={good}
+          neutral={neutral}
+          bad={bad}
+          total={this.countTotalFeedback()}
+          countTotalFeedback={this.countTotalFeedback}
+          positivePercentage={this.countPositiveFeedbackPercentage(
+            this.countTotalFeedback,
+          )}
+        />
       </Section>
     );
   }
