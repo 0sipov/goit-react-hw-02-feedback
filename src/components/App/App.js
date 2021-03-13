@@ -2,43 +2,44 @@ import React, { Component } from 'react';
 import styles from './App.module.css';
 import Section from '../Section/Section';
 import Statistics from '../Statistics/Statistics';
-import FeedbackOption from '../FeedbackOptions/FeedbackOption';
+import FeedbackOptions from '../FeedbackOptions/FeedbackOptions';
 
 class App extends Component {
   state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
+    options: {
+      good: 0,
+      neutral: 0,
+      bad: 0,
+      refrain: 0,
+    },
   };
   addFeedback = event => {
     const name = event.currentTarget.name;
     this.setState(prevState => {
-      return { [name]: prevState[name] + 1 };
+      return {
+        options: { ...prevState.options, [name]: prevState.options[name] + 1 },
+      };
     });
   };
   countTotalFeedback = () => {
-    const { good, neutral, bad } = this.state;
-    return good + neutral + bad;
+    const { options } = this.state;
+    return Object.values(options).reduce(
+      (accumulator, currentValue) => accumulator + currentValue,
+    );
   };
   countPositiveFeedbackPercentage = countTotalFeedback => {
-    const { good } = this.state;
+    const { good } = this.state.options;
     return Math.round(
       countTotalFeedback() && (good / countTotalFeedback()) * 100,
     );
   };
   render() {
-    const { good, neutral, bad } = this.state;
+    const { options } = this.state;
     return (
       <Section title={'Please leave feedback'}>
-        <FeedbackOption
-          addFeedback={this.addFeedback}
-          countTotalFeedback={this.countTotalFeedback}
-          countPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage}
-        />
+        <FeedbackOptions addFeedback={this.addFeedback} options={options} />
         <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
+          options={options}
           total={this.countTotalFeedback()}
           countTotalFeedback={this.countTotalFeedback}
           positivePercentage={this.countPositiveFeedbackPercentage(

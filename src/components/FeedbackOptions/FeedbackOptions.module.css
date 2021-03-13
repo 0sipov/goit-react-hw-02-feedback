@@ -5,11 +5,12 @@
 .borderButton {
   text-decoration: none;
   display: inline-block;
-  color: white;
+  color: rgba(0, 0, 0, 0.418);
   padding: 20px 30px;
   margin: 10px 20px;
   border-radius: 10px;
   font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 2px;
   background-size: 200% auto;
@@ -25,12 +26,27 @@
   outline: solid 1px grey;
   background-position: right center;
 }
-.green {
-  background-image: linear-gradient(to right, grey 0%, green 51%, grey 100%);
+.good {
+  background-image: linear-gradient(
+    to right,
+    grey 0%,
+    rgb(0, 248, 0) 51%,
+    grey 100%
+  );
 }
-.yellow {
-  background-image: linear-gradient(to right, grey 0%, yellow 51%, grey 100%);
+.neutral {
+  background-image: linear-gradient(
+    to right,
+    grey 0%,
+    rgb(248, 248, 0) 51%,
+    grey 100%
+  );
 }
-.red {
-  background-image: linear-gradient(to right, grey 0%, red 51%, grey 100%);
+.bad {
+  background-image: linear-gradient(
+    to right,
+    grey 0%,
+    rgb(248, 0, 0) 51%,
+    grey 100%
+  );
 }
