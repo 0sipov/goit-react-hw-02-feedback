@@ -13,10 +13,11 @@ const Statistics = ({
       <h2>Statistics</h2>
       {countTotalFeedback() > 0 ? (
         <>
-          {Object.entries(options).map(elem => {
+          {options.map(elem => {
             return (
-              <p key={elem[0]}>
-                {elem[0][0].toUpperCase() + elem[0].slice(1)}: {elem[1]}
+              <p key={elem.option}>
+                {elem.option[0].toUpperCase() + elem.option.slice(1)}:{' '}
+                {elem.feedbacks}
               </p>
             );
           })}

@@ -6,31 +6,37 @@ import FeedbackOptions from '../FeedbackOptions/FeedbackOptions';
 
 class App extends Component {
   state = {
-    options: {
-      good: 0,
-      neutral: 0,
-      bad: 0,
-      refrain: 0,
-    },
+    options: [
+      { option: 'good', feedbacks: 0 },
+      { option: 'neutral', feedbacks: 0 },
+      { option: 'bad', feedbacks: 0 },
+      { option: 'refrain', feedbacks: 0 },
+    ],
   };
   addFeedback = event => {
     const name = event.currentTarget.name;
-    this.setState(prevState => {
+    this.setState(preState => {
       return {
-        options: { ...prevState.options, [name]: prevState.options[name] + 1 },
+        options: preState.options.map(el => {
+          if (el.option === name) {
+            return { ...el, feedbacks: el.feedbacks + 1 };
+          }
+          return el;
+        }),
       };
     });
   };
   countTotalFeedback = () => {
     const { options } = this.state;
-    return Object.values(options).reduce(
-      (accumulator, currentValue) => accumulator + currentValue,
-    );
+    return options.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue.feedbacks;
+    }, 0);
   };
   countPositiveFeedbackPercentage = countTotalFeedback => {
-    const { good } = this.state.options;
+    const { options } = this.state;
+    const goodFeedbacks = options.find(el => el.option === 'good').feedbacks;
     return Math.round(
-      countTotalFeedback() && (good / countTotalFeedback()) * 100,
+      countTotalFeedback() && (goodFeedbacks / countTotalFeedback()) * 100,
     );
   };
   render() {

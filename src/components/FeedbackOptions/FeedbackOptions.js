@@ -5,16 +5,16 @@ const FeedbackOption = ({ addFeedback, options }) => {
   return (
     <div>
       <div className={styles.feedbackControl}>
-        {Object.keys(options).map(elem => {
+        {options.map(elem => {
           return (
             <button
-              key={elem}
-              className={styles.borderButton + ' ' + styles[elem]}
+              key={elem.option}
+              className={styles.borderButton + ' ' + styles[elem.option]}
               type="button"
-              name={elem}
+              name={elem.option}
               onClick={addFeedback}
             >
-              {elem}
+              {elem.option}
             </button>
           );
         })}
